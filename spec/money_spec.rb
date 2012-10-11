@@ -1,17 +1,18 @@
 # coding: utf-8
 
 require './dollar'
+require './franc'
 
 describe Dollar do
   describe "#times" do
     let(:five) {Dollar.new(5)}
 
-    context "５に数値をかける場合" do
+    context "５の場合" do
       it '5X2=10' do
-        Dollar.new(10).equals(five.times(2)).should == true
+        five.times(2).equals(Dollar.new(10)).should == true
       end
       it '5X3=15' do
-        Dollar.new(15).equals(five.times(3)).should == true
+        five.times(3).equals(Dollar.new(15)).should == true
       end
     end
   end
@@ -19,7 +20,7 @@ describe Dollar do
   describe "#equals" do
     let(:five) {Dollar.new(5)}
 
-    context "５と比較する場合" do
+    context "５の場合" do
       it '5==5はtrue' do
         five.equals(Dollar.new(5)).should == true
       end
@@ -32,3 +33,18 @@ describe Dollar do
 
 end
 
+describe Franc do
+  describe "#times" do
+    let(:five) {Franc.new(5)}
+
+    context "５の場合" do
+      it '5X2=10' do
+        five.times(2).equals(Franc.new(10)).should == true
+      end
+      it '5X3=15' do
+        five.times(3).equals(Franc.new(15)).should == true
+      end
+    end
+  end
+
+end
