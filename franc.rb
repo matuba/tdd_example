@@ -7,9 +7,5 @@ class Franc < Money
     super(amount, currency)
   end
 
-  def times(multiplier)
-    return Money.franc(@amount * multiplier)
-  end
-
 end
 

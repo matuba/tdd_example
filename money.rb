@@ -21,11 +21,15 @@ class Money
   end
 
   def equals(object)
-    return @amount == object.amount && self.class.name == object.class.name 
+    return @amount == object.amount && @currency == object.currency
   end
 
   def currency
     return @currency
+  end
+
+  def times(multiplier)
+    return Money.new(@amount * multiplier, @currency)
   end
 
 end

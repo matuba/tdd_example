@@ -59,6 +59,12 @@ describe Franc do
         five.times(3).should == Money::franc(15)
       end
     end
+
+    context "10の場合" do
+      it 'MoneyとFrancクラスで通貨が同じの場合true' do
+        Money.new(10, "CHF").equals(Franc.new(10, "CHF")).should == true
+      end
+    end
   end
 
   describe "#equals" do
