@@ -3,6 +3,23 @@ require './dollar'
 require './franc'
 
 describe Dollar do
+  describe "#currency" do
+
+    context "$の場合" do
+      it 'USDを返す' do
+        Money::dollar(1).currency.should == "USD"
+      end
+    end
+
+    context "フランの場合" do
+      it 'CHFを返す' do
+        Money::franc(1).currency.should == "CHF"
+      end
+    end
+  end
+end
+
+describe Dollar do
   describe "#times" do
     let(:five) {Money::dollar(5)}
 
