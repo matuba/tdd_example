@@ -1,20 +1,11 @@
 # coding: utf-8
-class Dollar
+require './money'
 
-  attr_reader :amount
-
-  def initialize(amount)
-    @amount = amount
-  end
-
-  def equals(object)
-    return @amount == object.amount
-  end
+class Dollar < Money
 
   def times(multiplier)
     return Dollar.new(@amount * multiplier)
   end
-
 
 end
 

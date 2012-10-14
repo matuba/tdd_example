@@ -47,4 +47,21 @@ describe Franc do
     end
   end
 
+  describe "#equals" do
+    let(:five) {Franc.new(5)}
+
+    context "５の場合" do
+      it '5==5はtrue' do
+        five.equals(Franc.new(5)).should == true
+      end
+      it '5==6はfalse' do
+        five.equals(Franc.new(6)).should == false
+      end
+      it '5(Franc)==5(Dollar)はfalse' do
+        five.equals(Dollar.new(5)).should == false
+      end
+
+    end
+  end
+
 end
