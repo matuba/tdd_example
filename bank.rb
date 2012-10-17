@@ -1,9 +1,10 @@
 # coding: utf-8
+require './sum'
 
 class Bank
 
   def reduce(source, to)
-    return Money::dollar(10)
+    return source.reduce(to)
   end
 
 end

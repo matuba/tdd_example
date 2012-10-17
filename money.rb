@@ -35,7 +35,11 @@ class Money < Expression
   end
 
   def plus( addend)
-    return Money.new(@amount + addend.amount, currency)
+    return Sum.new(self, addend)
+  end
+
+  def reduce(to)
+    return self
   end
 
 end
