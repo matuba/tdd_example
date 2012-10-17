@@ -1,5 +1,6 @@
 # coding: utf-8
 require './money'
+require './bank'
 
 describe Money do
   describe "#currency" do
@@ -40,6 +41,18 @@ describe Money do
       end
       it '5(Franc)==5(Dollar)はfalse' do
         five.equals(Money::franc(5)).should == false
+      end
+    end
+  end
+
+  describe "#plus" do
+    let(:five) {Money::dollar(5)}
+    let(:bank) {Bank.new()}
+    context "５の場合" do
+      it '5+5=10' do
+        sum = five.plus(Money::dollar(5))
+        reduced = bank.reduce(sum, "USD")
+        reduced.should == Money::dollar(10)
       end
     end
   end

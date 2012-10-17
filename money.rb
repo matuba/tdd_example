@@ -1,5 +1,7 @@
 # coding: utf-8
-class Money
+require './expression'
+
+class Money < Expression
   attr_reader :amount
   attr_reader :currency
 
@@ -30,6 +32,10 @@ class Money
 
   def times(multiplier)
     return Money.new(@amount * multiplier, @currency)
+  end
+
+  def plus( addend)
+    return Money.new(@amount + addend.amount, currency)
   end
 
 end
