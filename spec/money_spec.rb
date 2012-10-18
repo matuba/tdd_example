@@ -18,7 +18,14 @@ describe Bank do
         result = bank.reduce(Money::dollar(1), "USD")
         result.should == Money::dollar(1)
       end
+    end
 
+    context "フランの場合" do
+      it '2フランを＄１に変更' do
+        bank.addRate("CHF", "USD", 2)
+        result = bank.reduce(Money::franc(2), "USD")
+        result.should == Money::dollar(1)
+      end
     end
 
   end
