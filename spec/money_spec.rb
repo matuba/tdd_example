@@ -3,11 +3,44 @@ require './money'
 require './bank'
 require './sum'
 
+describe Sum do
+  describe "#plus" do
+    let(:bank) {Bank.new()}
+    context "$とフランの場合" do
+      it '$5+10CHF' do
+        fiveBucks = Money::dollar(5)
+        tenFrancs = Money::franc(10)
+        bank.addRate("CHF", "USD", 2)
+        sum = Sum.new(fiveBucks, tenFrancs).plus(fiveBucks)
+        result = bank.reduce(sum, "USD")
+        result.should == Money::dollar(15)
+      end
+    end
+
+  end
+
+  describe "#times" do
+    let(:bank) {Bank.new()}
+    context "$とフランの場合" do
+      it '$5+10CHF' do
+        fiveBucks = Money::dollar(5)
+        tenFrancs = Money::franc(10)
+        bank.addRate("CHF", "USD", 2)
+        sum = Sum.new(fiveBucks, tenFrancs).times(2)
+        result = bank.reduce(sum, "USD")
+        result.should == Money::dollar(20)
+      end
+    end
+
+  end
+
+end
+
 describe Bank do
   describe "#reduce" do
     let(:bank) {Bank.new()}
 
-    context "$の場合" do
+    context "$と$の場合" do
       it '$3+$4=$7' do 
         sum = Sum.new(Money::dollar(3), Money::dollar(4))
         result = bank.reduce(sum, "USD")
@@ -25,6 +58,16 @@ describe Bank do
         bank.addRate("CHF", "USD", 2)
         result = bank.reduce(Money::franc(2), "USD")
         result.should == Money::dollar(1)
+      end
+    end
+
+    context "$とフランの場合" do
+      it '$5+10CHF' do
+        fiveBucks = Money::dollar(5)
+        tenFrancs = Money::franc(10)
+        bank.addRate("CHF", "USD", 2)
+        result = bank.reduce(fiveBucks.plus(tenFrancs), "USD")
+        result.should == Money::dollar(10)
       end
     end
 
